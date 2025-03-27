@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Načítání .py souborů</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        button { padding: 10px 20px; font-size: 18px; cursor: pointer; }
+        #output { margin-top: 20px; white-space: pre-line; }
+    </style>
+</head>
+<body>
+    <h1>Automatické spuštění .py souborů</h1>
+    <button onclick="runScripts()">Spustit skripty</button>
+    <p id="output">Výstup skriptů se zobrazí zde...</p>
+
+    <script>
+        function runScripts() {
+            fetch("/run-scripts")
+                .then(response => response.text())
+                .then(data => document.getElementById("output").innerHTML = data)
+                .catch(error => document.getElementById("output").innerHTML = "Chyba při spouštění skriptů.");
+        }
+    </script>
+</body>
+</html>
